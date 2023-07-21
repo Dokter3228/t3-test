@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { api, type RouterOutputs } from "~/utils/api";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
