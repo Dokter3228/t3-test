@@ -15,6 +15,8 @@ export const postsRouter = createTRPCRouter({
       orderBy: { createdAt: "desc" },
     });
 
+    console.log(posts);
+
     const users = (
       await clerkClient.users.getUserList({
         userId: posts.map((post) => post.authorId),
@@ -24,7 +26,7 @@ export const postsRouter = createTRPCRouter({
 
     return posts.map((post) => {
       const author = users.find((user) => user.id === post.authorId);
-      if (!author?.username)
+      if (!author?.username && !author.fullName)
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "authorId for post not found",
@@ -34,7 +36,7 @@ export const postsRouter = createTRPCRouter({
         post,
         author: {
           ...author,
-          username: author.username,
+          username: author?.username ?? author?.fullName,
         },
       };
     });
