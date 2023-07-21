@@ -129,7 +129,7 @@ export default function Home() {
           </div>
         )}
         {isSignedIn && <CreatePostWizard />}
-        {isSignedIn && <SignOutButton />}
+        {/*{isSignedIn && <SignOutButton />}*/}
       </div>
       <Feed />
     </PageLayout>
