@@ -47,6 +47,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
         return "";
       } else if (match === "%20") {
         return " ";
+      } else {
+        return "";
       }
     });
   }
