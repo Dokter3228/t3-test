@@ -4,6 +4,7 @@ import { LoadingPage } from "~/components/LoadingSpinner";
 import superjson from "superjson";
 import { appRouter } from "~/server/api/root";
 import PageLayout from "~/components/layout";
+import Image from "next/image";
 
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data, isLoading } = api.profile.getUserByUserName.useQuery({
@@ -22,7 +23,15 @@ const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
         <title>{username}</title>
       </Head>
       <PageLayout>
-        <div>{username}</div>
+        <div className="border-b border-slate-400 bg-slate-600">
+          <Image
+            src={data.profileImageUrl}
+            alt={username + "'s profile pic"}
+            width={48}
+            height={48}
+          />
+          <div>{username}</div>
+        </div>
       </PageLayout>
     </>
   );
