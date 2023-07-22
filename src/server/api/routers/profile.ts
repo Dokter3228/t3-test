@@ -19,7 +19,7 @@ export const profileRouter = createTRPCRouter({
       if (!user) {
         [user] = await clerkClient.users.getUserList({
           // @ts-ignore
-          firstname: [input.username.split(" ")[0]],
+          lastname: input.username.split(" ")[1],
         });
         if (!user) {
           throw new TRPCError({
@@ -28,6 +28,8 @@ export const profileRouter = createTRPCRouter({
           });
         }
       }
+
+      console.log(user);
 
       return filterUserForClient(user);
     }),

@@ -5,6 +5,6 @@ export const filterUserForClient = (user: User) => {
     id: user.id,
     username: user.username,
     fullName: `${user.firstName} ${user.lastName}` || null,
-    profileImageUrl: user.profileImageUrl,
+    profileImageUrl: user.imageUrl || user.profileImageUrl,
   };
 };
